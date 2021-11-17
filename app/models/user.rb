@@ -38,6 +38,7 @@ class User < ApplicationRecord
 
   def downcase_objects
     username.downcase!
+    email.downcase!
   end
 
   # Служебный метод, преобразующий строку в 16-ричный формат для удобства хранения
