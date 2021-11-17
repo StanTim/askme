@@ -12,8 +12,10 @@ class User < ApplicationRecord
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }
 
+  before_validation :downcase_objects, on: :create
+
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
-  validates_format_of :username, with: /^[a-zA-Z0-9_.-]*$/, on: :create, multiline: true
+  validates_format_of :username, with: /^[a-z0-9_.-]*$/, on: :create, multiline: true
 
   attr_accessor :password
 
@@ -21,7 +23,6 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   before_save :encrypt_password
-  before_save :username_downcase
 
   def encrypt_password
     if self.password.present?
@@ -35,8 +36,8 @@ class User < ApplicationRecord
     end
   end
 
-  def username_downcase
-    self.username.downcase!
+  def downcase_objects
+    username.downcase!
   end
 
   # Служебный метод, преобразующий строку в 16-ричный формат для удобства хранения
