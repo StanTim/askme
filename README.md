@@ -1,24 +1,9 @@
-# README
+# AskMe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Клон популярного подросткового сервиса где вы можете задавать и получать ответы на ваши вопросы.
 
-Things you may want to cover:
+* Ruby version: 2.7.4
 
-* Ruby version
+* Rails 6.1.4.1
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Database Sqlite3
