@@ -14,12 +14,14 @@ class User < ApplicationRecord
 
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
   validates_format_of :username, with: /^[a-zA-Z0-9_.-]*$/, on: :create, multiline: true
+
   attr_accessor :password
 
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
 
   before_save :encrypt_password
+  before_save :username_downcase
 
   def encrypt_password
     if self.password.present?
@@ -31,6 +33,10 @@ class User < ApplicationRecord
         OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
       )
     end
+  end
+
+  def username_downcase
+    self.username.downcase!
   end
 
   # Служебный метод, преобразующий строку в 16-ричный формат для удобства хранения
