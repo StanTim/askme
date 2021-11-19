@@ -1,16 +1,37 @@
+<%# Это общий шаблон для всех страниц нашего сайта. В него будут завернуты %>
+<%# страницы нашего приложения. Здесь мы пропишем основную структуру наших %>
+<%# html-страниц и укажем, куда вставлять шаблон отдельной вьюхи. %>
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Askme</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<%# Именно он определяет, что будет в теге head каждой нашей html-страницы %>
+<head>
+  <meta charset="UTF-8"/>
+  <%# Именно здесь мы подключаем все стили и прописываем один (в рамках %>
+  <%# обучения) тег title для всех страниц сайта %>
+  <title>Хорошие вопросы</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%#= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<div class="header">
+  <div class="container">
+    <div class="header-logo">
+      <%# Ссылка на главную страницу сайта (root_path) %>
+      <h1 class="header-title"><%= link_to "Хорошие вопросы", root_path %></h1>
+    </div>
+  </div>
+</div>
 
-  <body>
+<div class="content">
+  <div class="container">
+    <%# Вместо волшебной конструкции yield рельсы подставят то, что срендерит %>
+    <%# шаблон для нужной нам страницы, например, users/show %>
     <%= yield %>
-  </body>
+  </div>
+</div>
+
+
+</body>
 </html>
