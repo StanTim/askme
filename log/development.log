@@ -1,0 +1,1652 @@
+Started GET "/users/new" for ::1 at 2021-11-21 19:16:08 +0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (10.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 4 pending migrations:
+
+20211115072300_create_users.rb
+20211115072425_create_questions.rb
+20211115191707_add_email_passwor_to_user.rb
+20211116120657_add_to_question.rb
+
+
+):
+  
+activerecord (6.1.4.1) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.4.1) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.4.1) lib/active_support/evented_file_update_checker.rb:59:in `execute'
+activerecord (6.1.4.1) lib/active_record/migration.rb:595:in `block in call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.4.1) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.3.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.3) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20211115072300)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211115072300"]]
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateQuestions (20211115072425)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "text" varchar, "answer" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211115072425"]]
+  [1m[36mTRANSACTION (10.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddEmailPassworToUser (20211115191707)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "email" varchar[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "password_hash" varchar[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "password_salt" varchar[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "avatar_url" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211115191707"]]
+  [1m[36mTRANSACTION (10.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddToQuestion (20211116120657)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "questions" ADD "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_questions_on_user_id" ON "questions" ("user_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aquestions" ("id" integer NOT NULL PRIMARY KEY, "text" varchar DEFAULT NULL, "answer" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aquestions_on_user_id" ON "aquestions" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aquestions" ("id","text","answer","created_at","updated_at","user_id")
+                     SELECT "id","text","answer","created_at","updated_at","user_id" FROM "questions"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "questions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "questions" ("id" integer NOT NULL PRIMARY KEY, "text" varchar DEFAULT NULL, "answer" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "user_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_047ab75908"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_questions_on_user_id" ON "questions" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "questions" ("id","text","answer","created_at","updated_at","user_id")
+                     SELECT "id","text","answer","created_at","updated_at","user_id" FROM "aquestions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aquestions"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211116120657"]]
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-11-21 16:16:35.115440"], ["updated_at", "2021-11-21 16:16:35.115440"]]
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/new" for ::1 at 2021-11-21 19:16:41 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#new as HTML
+Completed 406 Not Acceptable in 10ms (ActiveRecord: 0.0ms | Allocations: 5615)
+
+
+  
+ActionController::MissingExactTemplate (UsersController#new is missing a template for request formats: text/html):
+  
+actionpack (6.1.4.1) lib/action_controller/metal/implicit_render.rb:45:in `default_render'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:228:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+actiontext (6.1.4.1) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (6.1.4.1) lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `instance_exec'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.3.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.3) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2021-11-21 19:16:54 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 14.2ms | Allocations: 5808)
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 5873)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 0.6ms | Allocations: 19959)
+
+
+  
+ActionView::Template::Error (Missing partial questions/_question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started POST "/__web_console/repl_sessions/2c89a8dbce72fcd410b305b985f16964/trace" for ::1 at 2021-11-21 19:17:15 +0300
+Started GET "/users/new" for ::1 at 2021-11-21 20:00:01 +0300
+Processing by UsersController#new as HTML
+Completed 406 Not Acceptable in 2ms (Allocations: 3151)
+
+
+  
+ActionController::MissingExactTemplate (UsersController#new is missing a template for request formats: text/html):
+  
+actionpack (6.1.4.1) lib/action_controller/metal/implicit_render.rb:45:in `default_render'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:228:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+actiontext (6.1.4.1) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (6.1.4.1) lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `instance_exec'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.3.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.3) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/users/new" for ::1 at 2021-11-21 20:00:02 +0300
+Processing by UsersController#new as HTML
+Completed 406 Not Acceptable in 4ms (Allocations: 3171)
+
+
+  
+ActionController::MissingExactTemplate (UsersController#new is missing a template for request formats: text/html):
+  
+actionpack (6.1.4.1) lib/action_controller/metal/implicit_render.rb:45:in `default_render'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `tap'
+actionpack (6.1.4.1) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:228:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+actiontext (6.1.4.1) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (6.1.4.1) lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `instance_exec'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4.1) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4.1) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4.1) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4.1) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4.1) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4.1) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4.1) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.3.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.3) lib/mini_profiler/profiler.rb:393:in `call'
+webpacker (5.4.3) lib/webpacker/dev_server_proxy.rb:25:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.2) lib/puma/configuration.rb:249:in `call'
+puma (5.5.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.2) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.2) lib/puma/server.rb:447:in `process_client'
+puma (5.5.2) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/users/1" for ::1 at 2021-11-21 20:00:18 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:24:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 8.6ms | Allocations: 3775)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 3840)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.3ms | Allocations: 14761)
+
+
+  
+ActionView::Template::Error (undefined method `sklonenie' for #<ActionView::Base:0x0000000000aaa0>):
+    12:     <%# Выводим никнейм пользователя с символом «@» перед ним. %>
+    13:     @<%= @user.username %>
+    14:   </h2>
+    15: <h3><%= sklonenie(@questions.size, 'вопрос', 'вопроса', 'вопросов', @questions.size) %></h3>
+    16: <h3><%= sklonenie(@answers_quantity, 'ответ', 'ответа', 'ответов', @answers_quantity) %></h3>
+    17: 
+    18:   <div class="user-ask-button container text-center">
+  
+app/views/users/show.html.erb:15
+Started GET "/users/1" for ::1 at 2021-11-21 20:03:18 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:24:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1608)
+  Rendered layout layouts/application.html.erb (Duration: 1.8ms | Allocations: 1672)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.0ms | Allocations: 13429)
+
+
+  
+ActionView::Template::Error (Missing partial questions/_question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 21:14:26 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 10.6ms | Allocations: 4478)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | Allocations: 4547)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.5ms | Allocations: 19208)
+
+
+  
+ActionView::Template::Error (Missing partial questions/_question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 21:14:27 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1668)
+  Rendered layout layouts/application.html.erb (Duration: 1.4ms | Allocations: 1734)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 4976)
+
+
+  
+ActionView::Template::Error (Missing partial questions/_question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 21:14:28 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1538)
+  Rendered layout layouts/application.html.erb (Duration: 1.9ms | Allocations: 1602)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 4703)
+
+
+  
+ActionView::Template::Error (Missing partial questions/_question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 21:14:28 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1538)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 1602)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 4703)
+
+
+  
+ActionView::Template::Error (Missing partial questions/_question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 21:15:15 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 2.1ms | Allocations: 2234)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | Allocations: 2299)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 6134)
+
+
+  
+ActionView::Template::Error (Missing partial questions/__question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/_question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 21:15:16 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1538)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 1602)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 4704)
+
+
+  
+ActionView::Template::Error (Missing partial questions/__question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/_question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 21:15:16 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1538)
+  Rendered layout layouts/application.html.erb (Duration: 1.2ms | Allocations: 1602)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 4703)
+
+
+  
+ActionView::Template::Error (Missing partial questions/__question with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/stanislav/my_projects/lesson47/askme/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actiontext-6.1.4.1/app/views"
+  * "/home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionmailbox-6.1.4.1/app/views"
+):
+    43:   <div class="user-questions buffer-both">
+    44:     <div class="questions-list">
+    45:       <% @questions.each do |question| %>
+    46:         <%= render partial: 'questions/_question', object: question %>
+    47:       <% end %>
+    48:     </div>
+    49:   </div>
+  
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 22:08:06 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered questions/_question.html.erb (Duration: 20.0ms | Allocations: 9376)
+  Rendered users/show.html.erb within layouts/application (Duration: 23.4ms | Allocations: 10536)
+  Rendered layout layouts/application.html.erb (Duration: 23.6ms | Allocations: 10601)
+Completed 500 Internal Server Error in 28ms (Allocations: 14426)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x00000000009d30>
+Did you mean?  current_page?):
+    24: 
+    25:   <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
+    26:   <%# и отвечать на него %>
+    27:   <% if question.user == current_user %>
+    28:     <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
+    29:     <%# овтета на письмо, иначе — карандашик %>
+    30:     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
+  
+app/views/questions/_question.html.erb:27
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 22:08:07 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered questions/_question.html.erb (Duration: 7.1ms | Allocations: 4380)
+  Rendered users/show.html.erb within layouts/application (Duration: 8.7ms | Allocations: 4987)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 5051)
+Completed 500 Internal Server Error in 13ms (Allocations: 8153)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x0000000000a118>
+Did you mean?  current_page?):
+    24: 
+    25:   <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
+    26:   <%# и отвечать на него %>
+    27:   <% if question.user == current_user %>
+    28:     <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
+    29:     <%# овтета на письмо, иначе — карандашик %>
+    30:     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
+  
+app/views/questions/_question.html.erb:27
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 22:08:08 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered questions/_question.html.erb (Duration: 7.2ms | Allocations: 4380)
+  Rendered users/show.html.erb within layouts/application (Duration: 8.3ms | Allocations: 4977)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 5041)
+Completed 500 Internal Server Error in 13ms (Allocations: 8142)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x0000000000a3e8>
+Did you mean?  current_page?):
+    24: 
+    25:   <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
+    26:   <%# и отвечать на него %>
+    27:   <% if question.user == current_user %>
+    28:     <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
+    29:     <%# овтета на письмо, иначе — карандашик %>
+    30:     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
+  
+app/views/questions/_question.html.erb:27
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started GET "/users/1" for ::1 at 2021-11-21 22:08:08 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered questions/_question.html.erb (Duration: 10.8ms | Allocations: 4380)
+  Rendered users/show.html.erb within layouts/application (Duration: 12.0ms | Allocations: 4977)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 5041)
+Completed 500 Internal Server Error in 14ms (Allocations: 8142)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x0000000000a6b8>
+Did you mean?  current_page?):
+    24: 
+    25:   <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
+    26:   <%# и отвечать на него %>
+    27:   <% if question.user == current_user %>
+    28:     <%# Определяем какая будет иконка, если у вопроса нет ответа, то иконка %>
+    29:     <%# овтета на письмо, иначе — карандашик %>
+    30:     <% edit_icon = question.answer.blank? ? 'reply' : 'pencil' %>
+  
+app/views/questions/_question.html.erb:27
+app/views/users/show.html.erb:46
+app/views/users/show.html.erb:45:in `each'
+app/views/users/show.html.erb:45
+Started POST "/__web_console/repl_sessions/b98acc3b9936a94da555cb3a3c68e78b/trace" for ::1 at 2021-11-21 22:12:13 +0300
+Started GET "/users/1" for ::1 at 2021-11-21 22:12:56 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 6.8ms | Allocations: 4570)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 4634)
+Completed 500 Internal Server Error in 13ms (Allocations: 8469)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x0000000000aac8>
+Did you mean?  current_page?):
+    4:   </h1>
+    5: 
+    6:   <div class="buffer-both">
+    7:     <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
+    8:   </div>
+    9: 
+   10:   <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
+  
+app/views/users/show.html.erb:7
+Started GET "/users/1" for ::1 at 2021-11-21 22:12:57 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 8.6ms | Allocations: 4121)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 4185)
+Completed 500 Internal Server Error in 13ms (Allocations: 7287)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x0000000000aeb0>
+Did you mean?  current_page?):
+    4:   </h1>
+    5: 
+    6:   <div class="buffer-both">
+    7:     <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
+    8:   </div>
+    9: 
+   10:   <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
+  
+app/views/users/show.html.erb:7
+Started GET "/users/1" for ::1 at 2021-11-21 22:12:57 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 7.4ms | Allocations: 4121)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 4185)
+Completed 500 Internal Server Error in 10ms (Allocations: 7286)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x0000000000b180>
+Did you mean?  current_page?):
+    4:   </h1>
+    5: 
+    6:   <div class="buffer-both">
+    7:     <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
+    8:   </div>
+    9: 
+   10:   <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
+  
+app/views/users/show.html.erb:7
+Started GET "/users/1" for ::1 at 2021-11-21 22:12:58 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 7.0ms | Allocations: 4121)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 4185)
+Completed 500 Internal Server Error in 9ms (Allocations: 7286)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<ActionView::Base:0x0000000000b450>
+Did you mean?  current_page?):
+    4:   </h1>
+    5: 
+    6:   <div class="buffer-both">
+    7:     <%= link_to 'Редактировать профиль', edit_user_path(@user) if current_user == @user %>
+    8:   </div>
+    9: 
+   10:   <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
+  
+app/views/users/show.html.erb:7
+Started GET "/users/1" for ::1 at 2021-11-21 22:14:08 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 10ms (ActiveRecord: 0.7ms | Allocations: 6229)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+Started GET "/users/1" for ::1 at 2021-11-21 22:14:10 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 5ms (ActiveRecord: 0.2ms | Allocations: 3624)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+Started GET "/users/" for ::1 at 2021-11-21 22:15:46 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 959)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 7840)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.1ms | Allocations: 11036)
+
+
+  
+ActionView::Template::Error (couldn't find file 'reset' with type 'text/css'
+Checked in these paths: 
+  /home/stanislav/my_projects/lesson47/askme/app/assets/config
+  /home/stanislav/my_projects/lesson47/askme/app/assets/images
+  /home/stanislav/my_projects/lesson47/askme/app/assets/stylesheets
+  /home/stanislav/.rvm/gems/ruby-2.7.4/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /home/stanislav/.rvm/gems/ruby-2.7.4/gems/actioncable-6.1.4.1/app/assets/javascripts
+  /home/stanislav/.rvm/gems/ruby-2.7.4/gems/activestorage-6.1.4.1/app/assets/javascripts
+  /home/stanislav/.rvm/gems/ruby-2.7.4/gems/actionview-6.1.4.1/lib/assets/compiled
+  /home/stanislav/.rvm/gems/ruby-2.7.4/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /home/stanislav/my_projects/lesson47/askme/node_modules):
+     9:   <%# Именно здесь мы подключаем все стили и прописываем один (в рамках %>
+    10:   <%# обучения) тег title для всех страниц сайта %>
+    11:   <title>Хорошие вопросы</title>
+    12:   <%= stylesheet_link_tag 'application', media: 'all' %>
+    13:   <%#= javascript_include_tag 'application' %>
+    14:   <%= csrf_meta_tags %>
+    15: </head>
+  
+app/assets/stylesheets/application.css:13
+app/views/layouts/application.html.erb:12
+Started GET "/users/" for ::1 at 2021-11-21 22:16:11 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 661)
+  Rendered layout layouts/application.html.erb (Duration: 36.0ms | Allocations: 39540)
+Completed 200 OK in 38ms (Views: 36.3ms | ActiveRecord: 0.1ms | Allocations: 42534)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/" for ::1 at 2021-11-21 22:16:51 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1080)
+  Rendered layout layouts/application.html.erb (Duration: 101.7ms | Allocations: 55056)
+Completed 200 OK in 110ms (Views: 103.0ms | ActiveRecord: 0.1ms | Allocations: 59473)
+
+
+Started GET "/users/" for ::1 at 2021-11-21 22:16:53 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 674)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 3595)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.1ms | Allocations: 4003)
+
+
+Started GET "/users/" for ::1 at 2021-11-21 22:16:54 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 3465)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.2ms | Allocations: 3860)
+
+
+Started GET "/users/" for ::1 at 2021-11-21 22:16:55 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 3465)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/users/" for ::1 at 2021-11-21 22:16:55 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 670)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 3475)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.4ms | Allocations: 3881)
+
+
+Started GET "/users/1" for ::1 at 2021-11-21 22:17:53 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 8ms (ActiveRecord: 0.9ms | Allocations: 4343)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+Started GET "/users/1" for ::1 at 2021-11-21 22:17:54 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1191)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+Started GET "/users/1" for ::1 at 2021-11-21 22:17:54 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1087)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+Started GET "/users/1" for ::1 at 2021-11-21 22:17:54 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1087)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+Started GET "/users/1" for ::1 at 2021-11-21 22:17:55 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms | Allocations: 1087)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+Started GET "/users" for ::1 at 2021-11-21 22:18:00 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 690)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 3683)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.1ms | Allocations: 4145)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:06 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 3465)
+Completed 200 OK in 12ms (Views: 10.7ms | ActiveRecord: 0.2ms | Allocations: 3861)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:10 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 3466)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.2ms | Allocations: 3861)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:11 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 3465)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.3ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:11 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 3465)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:51 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.4ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.0ms | Allocations: 3516)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.1ms | Allocations: 3913)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:52 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 663)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 3467)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.1ms | Allocations: 3863)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:52 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 3465)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:52 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 3465)
+Completed 200 OK in 6ms (Views: 4.8ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:52 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 3465)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:18:52 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | Allocations: 3465)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:21:30 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 922)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 4030)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.1ms | Allocations: 5149)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:21:30 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 3516)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.1ms | Allocations: 3913)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:21:30 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 3465)
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:21:30 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 3465)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.1ms | Allocations: 3861)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:21:31 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 3465)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.2ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:21:31 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 3.0ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 3465)
+Completed 200 OK in 9ms (Views: 7.3ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/" for ::1 at 2021-11-21 22:21:31 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 662)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 3465)
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.1ms | Allocations: 3860)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 08:39:56 +0300
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+Completed 404 Not Found in 9ms (ActiveRecord: 0.8ms | Allocations: 5071)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/users_controller.rb:115:in `load_user'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "anton@mail.ru"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "tony"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "created_at", "updated_at", "email", "password_hash", "password_salt") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Anton"], ["username", "tony"], ["created_at", "2021-11-22 05:46:06.982837"], ["updated_at", "2021-11-22 05:46:06.982837"], ["email", "anton@mail.ru"], ["password_hash", "9400d8019da54314ad24438c2b12f9ac26ab8c16766d46062408acbfcffa2887"], ["password_salt", "24a83b0a5a2089db5c3ff771cf2740bf"]]
+  [1m[36mTRANSACTION (13.3ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/users/1" for ::1 at 2021-11-22 08:46:16 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:45
+  Rendered users/show.html.erb within layouts/application (Duration: 20.6ms | Allocations: 9174)
+  Rendered layout layouts/application.html.erb (Duration: 23.3ms | Allocations: 12555)
+Completed 200 OK in 50ms (Views: 24.6ms | ActiveRecord: 0.7ms | Allocations: 28843)
+
+
+Started GET "/users/" for ::1 at 2021-11-22 09:06:53 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/users/index.html.erb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 2219)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 4926)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.3ms | Allocations: 5449)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:07:04 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:45
+  Rendered users/show.html.erb within layouts/application (Duration: 6.0ms | Allocations: 1716)
+  Rendered layout layouts/application.html.erb (Duration: 7.7ms | Allocations: 4514)
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.3ms | Allocations: 5749)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:07:04 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mQuestion Load (0.0ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:45
+  Rendered users/show.html.erb within layouts/application (Duration: 2.2ms | Allocations: 1698)
+  Rendered layout layouts/application.html.erb (Duration: 3.6ms | Allocations: 4402)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.1ms | Allocations: 5612)
+
+
+Started POST "/questions" for ::1 at 2021-11-22 09:07:26 +0300
+Processing by QuestionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "question"=>{"user_id"=>"1", "text"=>"Как дела?"}, "commit"=>"Задать вопрос"}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("text", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["text", "Как дела?"], ["created_at", "2021-11-22 06:07:26.614181"], ["updated_at", "2021-11-22 06:07:26.614181"], ["user_id", 1]]
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 19ms (ActiveRecord: 12.2ms | Allocations: 6028)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:07:26 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:45
+  Rendered questions/_question.html.erb (Duration: 1.0ms | Allocations: 527)
+  Rendered users/show.html.erb within layouts/application (Duration: 4.3ms | Allocations: 2511)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 5272)
+Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.2ms | Allocations: 6471)
+
+
+Started POST "/questions" for ::1 at 2021-11-22 09:07:44 +0300
+Processing by QuestionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "question"=>{"user_id"=>"1", "text"=>"ты кто по жизни?"}, "commit"=>"Задать вопрос"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("text", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["text", "ты кто по жизни?"], ["created_at", "2021-11-22 06:07:44.041648"], ["updated_at", "2021-11-22 06:07:44.041648"], ["user_id", 1]]
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 20ms (ActiveRecord: 11.5ms | Allocations: 5563)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:07:44 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:45
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 2.6ms | Allocations: 2079)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 4781)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.1ms | Allocations: 5980)
+
+
+Started POST "/questions" for ::1 at 2021-11-22 09:07:59 +0300
+Processing by QuestionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "question"=>{"user_id"=>"1", "text"=>"Есть ли жизнь на Марсе?"}, "commit"=>"Задать вопрос"}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mQuestion Create (0.2ms)[0m  [1m[32mINSERT INTO "questions" ("text", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?)[0m  [["text", "Есть ли жизнь на Марсе?"], ["created_at", "2021-11-22 06:07:59.331958"], ["updated_at", "2021-11-22 06:07:59.331958"], ["user_id", 1]]
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/questions_controller.rb:31:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 19ms (ActiveRecord: 10.9ms | Allocations: 5564)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:07:59 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:45
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2261)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 4963)
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.2ms | Allocations: 6161)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:11:11 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.6ms | Allocations: 484)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 6.0ms | Allocations: 4554)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 7561)
+Completed 200 OK in 12ms (Views: 8.7ms | ActiveRecord: 0.2ms | Allocations: 9473)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:43:48 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 5.1ms | Allocations: 3556)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 6300)
+Completed 200 OK in 10ms (Views: 6.9ms | ActiveRecord: 0.5ms | Allocations: 8111)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:43:48 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 6.9ms | Allocations: 3533)
+  Rendered layout layouts/application.html.erb (Duration: 9.1ms | Allocations: 6329)
+Completed 200 OK in 12ms (Views: 9.3ms | ActiveRecord: 0.3ms | Allocations: 7528)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:43:49 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.3ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.4ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 7.5ms | Allocations: 3537)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 6241)
+Completed 200 OK in 12ms (Views: 9.7ms | ActiveRecord: 0.3ms | Allocations: 7457)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:43:49 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 5.2ms | Allocations: 3533)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 6235)
+Completed 200 OK in 10ms (Views: 6.9ms | ActiveRecord: 0.3ms | Allocations: 7433)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "stan@mail.ru"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "stantimrus"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("id", "name", "username", "created_at", "updated_at", "email", "password_hash", "password_salt", "avatar_url") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["id", 2], ["name", "Stan"], ["username", "stantimrus"], ["created_at", "2021-11-22 06:46:52.303678"], ["updated_at", "2021-11-22 06:46:52.303678"], ["email", "stan@mail.ru"], ["password_hash", "984c146b9a5989dcce312bbbf8768203fa9df43a26db72a3fdb7e75d8c52ae0c"], ["password_salt", "20bab437ece41108c61e080529fdeec7"], ["avatar_url", "avatar.png"]]
+  [1m[36mTRANSACTION (10.3ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/users/1" for ::1 at 2021-11-22 09:46:58 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 4.7ms | Allocations: 3534)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 6287)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.2ms | Allocations: 7485)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:46:58 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 5.1ms | Allocations: 3536)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 6238)
+Completed 200 OK in 10ms (Views: 7.7ms | ActiveRecord: 0.3ms | Allocations: 7436)
+
+
+Started GET "/users/1" for ::1 at 2021-11-22 09:46:59 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 110)
+  Rendered questions/_question.html.erb (Duration: 0.2ms | Allocations: 109)
+  Rendered questions/_question.html.erb (Duration: 0.1ms | Allocations: 108)
+  Rendered users/show.html.erb within layouts/application (Duration: 5.0ms | Allocations: 3533)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 6890)
+Completed 200 OK in 12ms (Views: 9.5ms | ActiveRecord: 0.2ms | Allocations: 8088)
+
+
+Started GET "/users/2" for ::1 at 2021-11-22 09:47:01 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1831)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 1895)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.1ms | Allocations: 3069)
+
+
+  
+ActionView::Template::Error (The asset "avatar.png" is not present in the asset pipeline.
+):
+    10:   <%# Добавляем ссылку для редактирования пользователя, которая ведет на %>
+    11:   <%# страницу /users/:id/edit %>
+    12:   <div class="user-image-div">
+    13:     <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Фото]' %>
+    14:   </div>
+    15: 
+    16:   <h2 class="title-small buffer-both">
+  
+app/views/users/show.html.erb:13
+Started GET "/users/2" for ::1 at 2021-11-22 09:50:12 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered users/show.html.erb within layouts/application (Duration: 29.7ms | Allocations: 27725)
+  Rendered layout layouts/application.html.erb (Duration: 40.2ms | Allocations: 45774)
+Completed 200 OK in 42ms (Views: 40.4ms | ActiveRecord: 0.3ms | Allocations: 46972)
+
+
+Started GET "/users" for ::1 at 2021-11-22 10:31:32 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/users/index.html.erb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:9
+  Rendered users/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 2712)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 5539)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.4ms | Allocations: 6068)
+
+
+Started GET "/users/2" for ::1 at 2021-11-22 10:31:40 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:115:in `load_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "questions" WHERE "questions"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:19
+  [1m[36mQuestion Load (0.1ms)[0m  [1m[34mSELECT "questions".* FROM "questions" WHERE "questions"."user_id" = ? ORDER BY "questions"."created_at" DESC[0m  [["user_id", 2]]
+  ↳ app/views/users/show.html.erb:47
+  Rendered users/show.html.erb within layouts/application (Duration: 4.0ms | Allocations: 3003)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 5710)
+Completed 200 OK in 9ms (Views: 5.6ms | ActiveRecord: 0.4ms | Allocations: 6933)
+
+
