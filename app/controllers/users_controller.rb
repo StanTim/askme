@@ -99,6 +99,14 @@ class UsersController < ApplicationController
     # создаем болванку вопроса, вызывая метод build у результата вызова метода
     # @user.questions.
     @new_question = @user.questions.build
+
+    @questions = @user.questions.order(created_at: :desc)
+
+    @new_question = @user.questions.build
+
+    @questions_count = @questions.count
+    @answers_quantity = @questions.where.not(answer: nil).count
+    # @unanswered_count = @questions_count - @answers_count
   end
 
   private

@@ -16,7 +16,8 @@
   <h2 class="title-small buffer-both">
     @<%= @user.username %>
   </h2>
-  <h3><%= sklonenie(@questions.size, 'вопрос', 'вопроса', 'вопросов', @questions.size) %></h3>
+
+  <h3><%= sklonenie(@questions.count, 'вопрос', 'вопроса', 'вопросов', @questions.count) %></h3>
   <h3><%= sklonenie(@answers_quantity, 'ответ', 'ответа', 'ответов', @answers_quantity) %></h3>
 
   <div class="user-ask-button container text-center">
