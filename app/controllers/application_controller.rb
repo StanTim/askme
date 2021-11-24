@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # http://guides.rubyonrails.org/security.html#cross-site-request-forgery-csrf
   protect_from_forgery with: :exception
 
-  # Чтобы метод current_user был доступен в шаблона, нам необходимо объявить
+  # Чтобы метод current_user был доступен вне шаблона, нам необходимо объявить
   # его с помощью метода helper_method. Эта строка как бы говорит рельсам:
   # если в шаблоне встретишь current_user — не пугайся, что такого метода нет,
   # дерни этот метод у контроллера.
