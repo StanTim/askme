@@ -35,8 +35,6 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.4'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
@@ -49,6 +47,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3', '~> 1.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
