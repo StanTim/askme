@@ -15,10 +15,10 @@ class User < ApplicationRecord
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }
 
-  before_validation :downcase_objects, on: :create
+  before_validation :downcase_objects
 
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
-  validates_format_of :username, with: /^[a-z0-9_.-]*$/, on: :create, multiline: true
+  validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
 
   attr_accessor :password
 
