@@ -39,9 +39,8 @@
       </div>
 
       <div class="form-field">
-        <%= f.label 'Цвет фона', class: 'form-color' %>
-        <input type=color value="red">
-        <% f.text_field :color, class: 'form-text-field' %>
+        <%= f.label 'Цвет фона', class: 'form-label' %>
+        <%= f.color_field :color, class: 'form-color-field' %>
       </div>
 
       <div class="buffer-top-large buffer-bottom">
