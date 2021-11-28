@@ -14,7 +14,7 @@
         <div class="form-errors">
           <ul>
             <% @user.errors.full_messages.each do |message| %>
-            <li class="form-error-message"><%=  message  %></li>
+              <li class="form-error-message"><%= message %></li>
             <% end %>
           </ul>
         </div>
@@ -61,6 +61,11 @@
         <%= f.submit 'Сохранить', class: 'button button-dark button-small' %>
       </div>
     <% end %>
+
+    <div class="form-action buffer-top">
+      <p class="form-field">Осторожно! Удалить аккаунт без подтверждения? </p>
+      <%= button_to 'Удалить аккаунт', @user, method: :delete , class: 'button button-red button-danger' %>
+    </div>
 
     <%# Подробнее про помощники для создания форм: %>
     <%# http://guides.rubyonrails.org/form_helpers.html %>

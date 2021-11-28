@@ -6,9 +6,6 @@ class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
-  # Количество отвеченных вопросов у пользователя:
-  # answers_count = 0
-
   has_many :questions
 
   validates :email, :username, presence: true

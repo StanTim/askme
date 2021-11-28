@@ -1,8 +1,9 @@
 # Контроллер, управляющий пользователями. Должен уметь:
 #
-#   1. Показывать страницу пользователя
-#   2. Создавать новых пользователей
-#   3. Позволять пользователю редактировать свою страницу
+#   1. Показывать страницу пользователя.
+#   2. Создавать новых пользователей.
+#   3. Позволять пользователю редактировать свою страницу.
+#   4. Разрешить пользователю удалить свой аккаунт.
 #
 class UsersController < ApplicationController
   # Загружаем юзера из базы для экшенов кроме :index, :create, :new
@@ -60,6 +61,11 @@ class UsersController < ApplicationController
   # Перед этим действием сработает before_action :load_user и в переменной @user
   # у нас будет лежать пользовать с нужным id равным params[:id].
   def edit
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to root_url, notice: 'Пользователь удалён!'
   end
 
   # Действие update будет отзываться при PUT-запросе из формы редактирования
@@ -126,7 +132,7 @@ class UsersController < ApplicationController
   # Явно задаем список разрешенных параметров для модели User. Мы говорим, что
   # у хэша params должен быть ключ :user. Значением этого ключа может быть хэш с
   # ключами: :email, :password, :password_confirmation, :name, :username и
-  # :avatar_url. Другие ключи будут отброшены.
+  # :avatar_url, :color. Другие ключи будут отброшены.
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
                                  :name, :username, :avatar_url, :color)
