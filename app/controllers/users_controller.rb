@@ -65,6 +65,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    reset_session
     redirect_to root_url, notice: 'Пользователь удалён!'
   end
 

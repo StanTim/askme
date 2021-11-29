@@ -20,6 +20,11 @@
     <div class="question-date">
       <%= l(question.created_at, format: :short) %>
     </div>
+
+    <%# Автор вопроса %>
+    <div class="question-author">
+      <%= link_to question. %>
+    </div>
   </div>
 
   <%# Если адресат вопроса — текущий пользователь, он может редактировать вопрос %>
