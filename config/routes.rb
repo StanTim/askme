@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   # Ресурс вопросов (кроме экшенов :show, :new, :index)
-  resources :questions, except: [:show, :new, :index]
+  resources :questions, except: [:show, :new, :index, :destroy]
 
   # Синонимы путей — в дополнение к созданным в ресурсах выше.
   #

@@ -6,7 +6,7 @@ class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
-  has_many :questions
+  has_many :questions, dependent: :destroy
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
@@ -15,6 +15,7 @@ class User < ApplicationRecord
   before_validation :downcase_objects
 
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
+  validates_format_of :avatar_url, with: URI::regexp, on: :update
   validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
 
   attr_accessor :password

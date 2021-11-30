@@ -8,7 +8,7 @@
 #
 class QuestionsController < ApplicationController
   # Инициализируем объект вопрос для экшенов кроме :edit, :update, :destroy
-  before_action :load_question, only: [:edit, :update, :destroy]
+  before_action :load_question, only: [:edit, :update]
 
   # Проверяем имеет ли юзер доступ к экшену для всей дествий, кроме задавания
   # вопроса, это действие может вызвать даже неавторизованный пользователь.
@@ -27,6 +27,7 @@ class QuestionsController < ApplicationController
   # /questions/edit
   def create
     @question = Question.new(question_params)
+    @question.author = current_user
 
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
@@ -86,7 +87,7 @@ class QuestionsController < ApplicationController
     # Защита от уязвимости: если текущий пользователь — адресат вопроса,
     # он может менять ответы на вопрос, ему доступно также поле :answer.
     if current_user.present? &&
-       params[:question][:user_id].to_i == current_user.id
+      params[:question][:user_id].to_i == current_user.id
       params.require(:question).permit(:user_id, :text, :answer)
     else
       params.require(:question).permit(:user_id, :text)
