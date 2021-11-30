@@ -1,5 +1,3 @@
-# (c) goodprogrammer.ru
-#
 # Контроллер, управляющий вопросами. Действия:
 #
 # 1. Редактирует вопрос
@@ -8,9 +6,9 @@
 #
 class QuestionsController < ApplicationController
   # Инициализируем объект вопрос для экшенов кроме :edit, :update, :destroy
-  before_action :load_question, only: [:edit, :update]
+  before_action :load_question, only: [:edit, :update, :destroy]
 
-  # Проверяем имеет ли юзер доступ к экшену для всей дествий, кроме задавания
+  # Проверяем имеет ли юзер доступ к экшену для всех дествий, кроме задавания
   # вопроса, это действие может вызвать даже неавторизованный пользователь.
   before_action :authorize_user, except: [:create]
 
@@ -27,8 +25,12 @@ class QuestionsController < ApplicationController
   # /questions/edit
   def create
     @question = Question.new(question_params)
-    @question.author = current_user
 
+    # Если вопрос задан неавторизованным пользователем, то автором будет "Аноним"
+    # if session[:user_id] == nil
+    #   byebug
+    #   @question.author = "Анонимный пользователь"
+    # end
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
@@ -85,12 +87,12 @@ class QuestionsController < ApplicationController
   # быть хэш с ключами: :user_id и :text. Другие ключи будут отброшены.
   def question_params
     # Защита от уязвимости: если текущий пользователь — адресат вопроса,
-    # он может менять ответы на вопрос, ему доступно также поле :answer.
+    # он может менять ответы на вопрос,  ему доступно поле :answer.
     if current_user.present? &&
       params[:question][:user_id].to_i == current_user.id
       params.require(:question).permit(:user_id, :text, :answer)
     else
-      params.require(:question).permit(:user_id, :text)
+      params.require(:question).permit( :user_id, :text)
     end
   end
 end

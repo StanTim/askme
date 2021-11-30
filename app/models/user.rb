@@ -6,41 +6,25 @@ class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
-  has_many :questions, dependent: :destroy
+  attr_accessor :password
+
+  before_validation :downcase_objects
+
+  before_save :encrypt_password
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }
 
-  before_validation :downcase_objects
-
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
   validates_format_of :avatar_url, with: URI::regexp, on: :update
   validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
 
-  attr_accessor :password
-
   validates_presence_of :password, on: :create
+
   validates_confirmation_of :password
 
-  before_save :encrypt_password
-
-  def encrypt_password
-    if self.password.present?
-      # создаем соль - рандомная строка усложняющая задачу хакерам
-      self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
-
-      # Создаём хэш пароля - длинная уникальная строка1. из которой невозможно восстановить исх. пароль.
-      self.password_hash = User.hash_to_string(
-        OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
-      )
-    end
-  end
-
-  def downcase_objects
-    username.downcase!
-    email.downcase!
-  end
+  has_many :questions, dependent: :destroy
 
   # Служебный метод, преобразующий строку в 16-ричный формат для удобства хранения
   def self.hash_to_string(password_hash)
@@ -71,5 +55,24 @@ class User < ApplicationRecord
 
     # Иначе, возвращаем nil
     nil
+  end
+
+  # Двуфакторная шифровка пароля в случае утери базы данных.
+  def encrypt_password
+    if self.password.present?
+      # создаем соль - рандомная строка усложняющая задачу хакерам
+      self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
+
+      # Создаём хэш пароля - длинная уникальная строка1. из которой невозможно восстановить исх. пароль.
+      self.password_hash = User.hash_to_string(
+        OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
+      )
+    end
+  end
+
+  # Приводит парамтры внутри метода в нижний регистр.
+  def downcase_objects
+    username.downcase!
+    email.downcase!
   end
 end

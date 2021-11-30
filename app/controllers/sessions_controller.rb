@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 
   # Удаляет сессию залогиненного юзера
   def destroy
-    # Затигаем в сесси значение ключа :user_id
+    # Затигаем в сессию значение ключа :user_id
     session[:user_id] = nil
 
     # Редиректим пользователя на главную с сообщением
