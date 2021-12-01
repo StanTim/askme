@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_11_29_184721) do
     t.string "password_hash"
     t.string "password_salt"
     t.string "avatar_url"
-    t.string "color"
+    t.string "color", default: "#005a55"
   end
 
   add_foreign_key "questions", "users"
