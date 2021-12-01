@@ -26,11 +26,9 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    # Если вопрос задан неавторизованным пользователем, то автором будет "Аноним"
-    # if session[:user_id] == nil
-    #   byebug
-    #   @question.author = "Анонимный пользователь"
-    # end
+    # Если вопрос задан авторизованным пользователем.
+    @question.author if current_user
+
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
@@ -70,7 +68,7 @@ class QuestionsController < ApplicationController
 
   private
 
-  # Если загруженный из базы вопрос не пренадлежит и текущему залогиненному
+  # Если загруженный из базы вопрос не пренадлежит текущему залогиненному
   # пользователю — посылаем его с помощью описанного в контроллере
   # ApplicationController метода reject_user.
   def authorize_user

@@ -7,7 +7,7 @@
 #
 class UsersController < ApplicationController
   # Загружаем юзера из базы для экшенов кроме :index, :create, :new
-  before_action :load_user, except: [:index, :create, :new]
+  before_action :load_user, except: [:index, :new]
 
   # Проверяем имеет ли юзер доступ к экшену, делаем это для всех действий, кроме
   # :index, :new, :create, :show — к этим действиям есть доступ у всех, даже у
@@ -105,10 +105,6 @@ class UsersController < ApplicationController
     # Для формы нового вопроса, которая есть у нас на странице пользователя,
     # создаем болванку вопроса, вызывая метод build у результата вызова метода
     # @user.questions.
-    @new_question = @user.questions.build
-
-    @questions = @user.questions.order(created_at: :desc)
-
     @new_question = @user.questions.build
 
     @questions_count = @questions.count
