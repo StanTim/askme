@@ -7,7 +7,7 @@
 #
 class UsersController < ApplicationController
   # Загружаем юзера из базы для экшенов кроме :index, :create, :new
-  before_action :load_user, except: [:index, :new]
+  before_action :load_user, except: [:create, :index, :new]
 
   # Проверяем имеет ли юзер доступ к экшену, делаем это для всех действий, кроме
   # :index, :new, :create, :show — к этим действиям есть доступ у всех, даже у
