@@ -64,8 +64,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    # Данный экшн удаляет пользователя из БД
     @user.destroy
+
+    # Прерываем сессию
     reset_session
+
+    # Редиректим на главную страницу с уведомлением о удалении.
     redirect_to root_url, notice: 'Пользователь удалён!'
   end
 

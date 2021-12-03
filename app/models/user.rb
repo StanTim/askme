@@ -15,9 +15,12 @@ class User < ApplicationRecord
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }
+  validates :avatar_url,
+            :allow_nil,
+            format: { with: URI::regexp },
+            on: :update
 
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
-  validates_format_of :avatar_url, with: URI::regexp, on: :update
   validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
 
   validates_presence_of :password, on: :create
