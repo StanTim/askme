@@ -3,7 +3,7 @@
 # 1. Редактирует вопрос
 # 2. Создает вопрос
 # 3. Удаляет вопрос
-#
+
 class QuestionsController < ApplicationController
   # Инициализируем объект вопрос для экшенов кроме :edit, :update, :destroy
   before_action :load_question, only: [:edit, :update, :destroy]
@@ -26,8 +26,8 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-    # Если вопрос задан авторизованным пользователем.
-    @question.author = current_user if current_user.present?
+    # Запись автора вопроса в поле author.
+    @question.author = current_user
 
     if @question.save
 
