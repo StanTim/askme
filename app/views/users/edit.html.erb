@@ -64,7 +64,8 @@
 
     <div class="buffer-top-large buffer-bottom">
       <p class="form-field">Осторожно! Удалить аккаунт без подтверждения? </p>
-      <%= button_to 'Удалить аккаунт', @user, method: :delete , class: 'button button-red button-danger' %>
+      <%= button_to 'Удалить аккаунт', @user, method: :delete, data: { confirm: "Вы уверены?" },
+                    class: 'button button-red button-danger' %>
     </div>
 
     <%# Подробнее про помощники для создания форм: %>

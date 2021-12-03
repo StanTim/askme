@@ -18,10 +18,6 @@ module ApplicationHelper
     content_tag 'span', '', class: "fa fa-#{icon_class}"
   end
 
-  # class Sklonjator
-  # В список параметров метода добавим ещё один параметр, причем запишем его
-  # вместе с «дефолтным» значением — если метод будет вызван без этого
-  # последнего параметра, то в него будет записано false.
   def sklonenie(number, one, few, many, with_number = false)
     number = 0 if number.nil? || !number.is_a?(Numeric)
 
