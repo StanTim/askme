@@ -136,6 +136,8 @@ class UsersController < ApplicationController
   # ключами: :email, :password, :password_confirmation, :name, :username и
   # :avatar_url, :color. Другие ключи будут отброшены.
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :username, :author, :color)
+    params.require(:user).permit(
+      :email, :password, :password_confirmation, :name, :username, :author, :avatar_url, :color
+    )
   end
 end
