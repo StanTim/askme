@@ -1,4 +1,6 @@
 <%# Страница редактирования пользователя %>
+<%= javascript_include_tag %>
+
 <div class="container content-wrapper buffer-both">
   <h1 class="title-medium">Править профиль</h1>
 
@@ -64,8 +66,9 @@
 
     <div class="buffer-top-large buffer-bottom">
       <p class="form-field">Осторожно! Удалить аккаунт без подтверждения? </p>
-      <%= button_to 'Удалить аккаунт', @user, method: :delete, data: { confirm: "Вы уверены?" },
-                    class: 'button button-red button-danger' %>
+      <%= button_to 'Удалить аккаунт', user_path(@user), method: :delete, data: { confirm: "Вы уверены?" },
+                   class: 'button button-red button-danger' %>
+
     </div>
 
     <%# Подробнее про помощники для создания форм: %>

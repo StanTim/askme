@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :users
 
   # Ресурс сессий (только три экшена :new, :create, :destroy)
-  resources :sessions, only: [:new, :create, :destroy, :edit]
+  resource :sessions, only: [:new, :create, :destroy]
 
-  # Ресурс вопросов (кроме экшенов :show, :new, :index, :destroy)
-  resources :questions, except: [:show, :new, :index, :destroy]
+  # Ресурс вопросов
+  resources :questions
 
   # Синонимы путей — в дополнение к созданным в ресурсах выше.
   #
@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   get 'sign_up' => 'users#new'
   get 'log_out' => 'sessions#destroy'
   get 'log_in' => 'sessions#new'
+  # post 'delete' => 'users#destroy'
+  # post 'question_path' => 'users#edit'
+
 end
