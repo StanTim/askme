@@ -5,6 +5,5 @@ class Question < ApplicationRecord
 
   validates :text,
             presence: true,
-            uniqueness: true,
             length: { minimum: 3, maximum: 255 }
 end
