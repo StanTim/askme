@@ -9,24 +9,19 @@ class User < ApplicationRecord
   attr_accessor :password
 
   before_validation :downcase_objects
-
   before_save :encrypt_password
-
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }
   validates :avatar_url,
-            format: URI::regexp(%w[http https]),
+            format: URI::regexp(%w[http https ftp]),
             allow_blank: true,
             on: :update
 
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
   validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
-
   validates_presence_of :password, on: :create
-
   validates_confirmation_of :password
-
   has_many :questions, dependent: :destroy
 
   # Служебный метод, преобразующий строку в 16-ричный формат для удобства хранения
@@ -73,7 +68,7 @@ class User < ApplicationRecord
     end
   end
 
-  # Приводит парамтры внутри метода в нижний регистр.
+  # Приводит параметры внутри метода в нижний регистр.
   def downcase_objects
     username.downcase!
     email.downcase!
