@@ -22,6 +22,7 @@ class User < ApplicationRecord
   validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
+
   has_many :questions, dependent: :destroy
 
   # Служебный метод, преобразующий строку в 16-ричный формат для удобства хранения

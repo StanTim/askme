@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     # Прерываем сессию
-    # reset_session
+    reset_session
 
     # Редиректим на главную страницу с уведомлением о удалении.
     redirect_to root_url, notice: 'Пользователь удалён!'
