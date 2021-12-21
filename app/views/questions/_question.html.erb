@@ -22,9 +22,10 @@
     </div>
 
     <%# Автор вопроса %>
+    <% author = question.author %>
     <div class="question-author">
-      <% if question.author.present? %>
-        <%= link_to question.author.username, user_path(question.author) %>
+      <% if author.present? %>
+        <%= link_to author.username, user_path(author) %>
       <% else %>
         <%= "Неизвестный автор" %>
       <% end %>
