@@ -7,7 +7,4 @@
 * Rails 6.1.4.1
 
 * Database postgresql
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/main
