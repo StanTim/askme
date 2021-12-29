@@ -12,7 +12,12 @@
 //
 // https://github.com/rails/sprockets#sprockets-directives
 //
+//= require rails-ujs
 //= require_tree .
 
-//= require jquery
-//= require jquery_ujs
+$(function () {
+    $('#ask-button').click(function () {
+        $('#ask-form').slideToggle(300);
+        return false;
+    });
+});

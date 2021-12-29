@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.4.3'
-gem 'jquery-rails'
+gem 'turbolinks', '~> 5.2.0'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 

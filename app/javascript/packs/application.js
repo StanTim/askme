@@ -14,9 +14,17 @@ ActiveStorage.start()
 // Этот код добавляет обработчик события выдвигания формы при клике на кнопку
 // «Задать вопрос», которая видна только, когда страница открыта в маленьком
 // окне.
-$(function(){
-    $('#ask-button').click(function(){
-        $('#ask-form').slideToggle(300);
-        return false;
-    });
-});
+
+document.addEventListener('turbolinks:load', () => {
+    const askButton = document.getElementById('ask-button')
+    if(askButton) askButton.addEventListener('click', formHider)
+})
+
+const formHider = (event) => {
+    event.preventDefault()
+    const askForm = document.getElementById('ask-form')
+
+    setTimeout(() => {
+        askForm.classList.toggle('hide')
+    }, 300)
+}
