@@ -31,3 +31,5 @@
 /config/master.key
 /.bundle/config
 .idea
+node_modules/
+.node_modules
