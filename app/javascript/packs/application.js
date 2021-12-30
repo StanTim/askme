@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 Rails.start()
+Turbolinks.start()
 ActiveStorage.start()
 
 // Этот код добавляет обработчик события выдвигания формы при клике на кнопку
