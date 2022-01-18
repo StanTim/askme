@@ -5,19 +5,21 @@ class User < ApplicationRecord
   # Параметры алгоритма шифрования
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
+  EMAIL_REGEX = /^[a-z0-9_.-]*$/
+  MAX_NAME_LENGTH = 40
 
   attr_accessor :password
 
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
-  validates :username, length: { maximum: 40 }
+  validates :username, length: { maximum: MAX_NAME_LENGTH }
   validates :avatar_url,
             format: URI::regexp(%w[http https ftp]),
             allow_blank: true,
             on: :update
 
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
-  validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
+  validates_format_of :username, with: EMAIL_REGEX, multiline: true
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
 
