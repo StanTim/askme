@@ -8,8 +8,6 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  before_validation :downcase_objects
-  before_save :encrypt_password
   validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
   validates :username, length: { maximum: 40 }
@@ -22,6 +20,9 @@ class User < ApplicationRecord
   validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
+
+  before_validation :downcase_objects
+  before_save :encrypt_password
 
   has_many :questions, dependent: :destroy
 
