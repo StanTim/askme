@@ -9,21 +9,22 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  validates :email, :username, presence: true
-  validates :email, :username, uniqueness: true
+  validates :email, :username, presence: true, allow_nil: false
+  validates :email, :username, uniqueness: true, allow_nil: false
   validates :username, length: { maximum: MAX_NAME_LENGTH }
   validates :avatar_url,
             format: URI::regexp(%w[http https ftp]),
             allow_blank: true,
             on: :update
 
-  validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP, on: :create
+  validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
   validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
-  validates_presence_of :password, on: :create
+
   validates_confirmation_of :password
 
-  before_validation :downcase_attributes
-  before_validation :encrypt_password
+  after_validation :downcase_attributes
+
+  before_save :encrypt_password
 
   has_many :questions, dependent: :destroy
 
