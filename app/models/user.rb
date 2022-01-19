@@ -23,7 +23,7 @@ class User < ApplicationRecord
   validates_confirmation_of :password
 
   before_validation :downcase_attributes
-  before_save :encrypt_password
+  before_validation :encrypt_password
 
   has_many :questions, dependent: :destroy
 
