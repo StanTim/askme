@@ -39,9 +39,6 @@ class User < ApplicationRecord
     # Сперва находим кандидата по email
     user = find_by(email: email)
 
-    # Если пользователь не найден, возвращает nil
-    return nil unless user.present?
-
     # Формируем хэш пароля из того, что передали в метод
     hashed_password = User.hash_to_string(
       OpenSSL::PKCS5.pbkdf2_hmac(
