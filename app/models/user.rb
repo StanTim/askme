@@ -9,20 +9,28 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  validates :email, :username, presence: true, allow_nil: false
-  validates :email, :username, uniqueness: true, allow_nil: false
-  validates :username, length: { maximum: MAX_NAME_LENGTH }
+  before_validation :downcase_attributes
+
+  validates :username,
+            presence: true,
+            allow_nil: false,
+            uniqueness: true,
+            length: { maximum: MAX_NAME_LENGTH },
+            format:  { :with => /\A[a-zA-Z]+\z/,
+                       :message => "Only letters allowed" }
+
+  validates :email,
+            presence: true,
+            allow_nil: false,
+            uniqueness: true,
+            format: URI::MailTo::EMAIL_REGEXP
+
   validates :avatar_url,
             format: URI::regexp(%w[http https ftp]),
             allow_blank: true,
             on: :update
 
-  validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
-  validates_format_of :username, with: /^[a-z0-9_.-]*$/, multiline: true
-
   validates_confirmation_of :password
-
-  after_validation :downcase_attributes
 
   before_save :encrypt_password
 
