@@ -9,15 +9,13 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  before_validation :downcase_attributes
-
   validates :username,
-            presence: true,
             allow_nil: false,
+            presence: true,
             uniqueness: true,
             length: { maximum: MAX_NAME_LENGTH },
-            format:  { :with => /\A[a-zA-Z]+\z/,
-                       :message => "Only letters allowed" }
+            format: { :with => /\A[a-zA-Z]+\z/,
+                      :message => "Only letters allowed" }
 
   validates :email,
             presence: true,
@@ -31,6 +29,8 @@ class User < ApplicationRecord
             on: :update
 
   validates_confirmation_of :password
+
+  before_save :downcase_attributes
 
   before_save :encrypt_password
 
