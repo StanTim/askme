@@ -5,6 +5,8 @@ class User < ApplicationRecord
   # Параметры алгоритма шифрования
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
+
+  # максимально допустимая длина имени пользователя
   MAX_NAME_LENGTH = 40
 
   attr_accessor :password
@@ -58,16 +60,13 @@ class User < ApplicationRecord
     # никогда и не сохраняется нигде. Если пароли совпали, возвращаем
     # пользователя.
     return user if user.password_hash == hashed_password
-
-    # Иначе, возвращаем nil
-    nil
   end
 
   private
 
   # Двуфакторная шифровка пароля в случае утери базы данных.
   def encrypt_password
-    if self.password.present?
+    if password.present?
       # создаем соль - рандомная строка усложняющая задачу хакерам
       self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
 
