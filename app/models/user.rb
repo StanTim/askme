@@ -51,6 +51,8 @@ class User < ApplicationRecord
     # нижнем регистре
     user = find_by(email: email&.downcase)
 
+    return unless user.present?
+
     # Формируем хэш пароля из того, что передали в метод
     hashed_password = User.hash_to_string(
       OpenSSL::PKCS5.pbkdf2_hmac(
@@ -70,7 +72,7 @@ class User < ApplicationRecord
   def encrypt_password
     if password.present?
       # создаем соль - рандомная строка усложняющая задачу хакерам
-      self.password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
+      password_salt = User.hash_to_string(OpenSSL::Random.random_bytes(16))
 
       # Создаём хэш пароля - длинная уникальная строка1. из которой невозможно восстановить исх. пароль.
       self.password_hash = User.hash_to_string(
