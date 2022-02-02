@@ -31,7 +31,8 @@ class User < ApplicationRecord
             allow_blank: true,
             on: :update
 
-  validates_confirmation_of :password
+  validates :password, presence: true, on: :create
+  validates :password, confirmation: true
 
   before_save :encrypt_password
 
@@ -46,8 +47,9 @@ class User < ApplicationRecord
   # если пользователь с такой комбинацией есть в базе, возвращает этого
   # пользователя. Если нет — возвращает nil.
   def self.authenticate(email, password)
-    # Сперва находим кандидата по email
-    user = find_by(email: email)
+    # Сперва находим кандидата по email, с учётом, что имэйл хранится в базе в
+    # нижнем регистре
+    user = find_by(email: email&.downcase)
 
     # Формируем хэш пароля из того, что передали в метод
     hashed_password = User.hash_to_string(
@@ -59,7 +61,7 @@ class User < ApplicationRecord
     # Обратите внимание: сравнивается password_hash, а оригинальный пароль так
     # никогда и не сохраняется нигде. Если пароли совпали, возвращаем
     # пользователя.
-    return user if user.password_hash == hashed_password
+    user if user.password_hash == hashed_password
   end
 
   private
@@ -72,7 +74,7 @@ class User < ApplicationRecord
 
       # Создаём хэш пароля - длинная уникальная строка1. из которой невозможно восстановить исх. пароль.
       self.password_hash = User.hash_to_string(
-        OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
+        OpenSSL::PKCS5.pbkdf2_hmac(password, password_salt, ITERATIONS, DIGEST.length, DIGEST)
       )
     end
   end
