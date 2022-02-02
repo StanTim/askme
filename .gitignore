@@ -31,4 +31,4 @@ yarn-debug.log*
 /config/database.yml
 db/*
 .idea
-app/*
+
