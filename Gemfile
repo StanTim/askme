@@ -9,6 +9,7 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 5.4.3'
 gem 'turbolinks', '~> 5.2.0'
+gem 'dry-transaction', '~> 0.13.3'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 
