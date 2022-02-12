@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   root 'users#index'
 
   # Ресурс пользователей
-  resources :users
+  resources :users, except: [:destroy]
 
   # Ресурс сессий (только три экшена :new, :create, :destroy)
   resources :sessions, only: [:new, :create, :destroy]
 
   # Ресурс вопросов
   resources :questions, except: [:show, :new, :index]
+
+  # Ресурс хештеги
+  resources :hashtags, only: :show, params: :text
 
   # Синонимы путей — в дополнение к созднным в ресурсах выше.
   #
