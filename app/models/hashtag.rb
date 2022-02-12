@@ -4,5 +4,5 @@ class Hashtag < ApplicationRecord
   has_many :hashtag_questions, dependent: :destroy
   has_many :questions, through: :hashtag_questions
 
-  validates :text, uniqueness: true, presence: true
+  scope :with_questions, -> { where_exists(:questions) }
 end
