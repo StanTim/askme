@@ -1,7 +1,7 @@
 module Questions
   class Create < BaseTransaction
     step :build_model
-    step :recaptcha_check
+    step :check_recaptcha
     step :validation
     step :persistence
 
