@@ -59,12 +59,7 @@
 <div class="column-3-4">
   <div class="user-questions buffer-both">
     <div class="questions-list">
-      <% @questions.each do |question| %>
-        <%# Мы рисуем здесь для кажого вопроса в списке вопросов фрагмент %>
-        <%# (паршал), передавая в него текущий вопрос. Это очень похоже на %>
-        <%# вызов метода в ruby. %>
-        <%= render partial: 'questions/question', object: question %>
-      <% end %>
+        <%= render @questions %>
     </div>
   </div>
 </div>
