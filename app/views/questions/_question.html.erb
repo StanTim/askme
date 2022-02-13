@@ -6,13 +6,13 @@
   <div class="question-content">
     <%# Текст вопроса %>
     <div class="question-text text-lead">
-      <%= question.text %>
+      <%= sanitize text_with_hashtag_links(question.text) %>
     </div>
 
     <%# Текст ответа, если он есть %>
     <% if question.answer.present? %>
       <div class="question-answer text-lead">
-        <%= question.answer %>
+        <%= sanitize text_with_hashtag_links(question.answer) %>
       </div>
     <% end %>
 
