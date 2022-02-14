@@ -2,7 +2,7 @@
   <div class="user-questions buffer-both">
     <% @questions.each do |question| %>
       <%= link_to "@#{question.user.username}", user_path(question.user) %>
-      <%= render partial: 'questions/question', object: question %>
+      <%= render question %>
     <% end %>
   </div>
 </div>
