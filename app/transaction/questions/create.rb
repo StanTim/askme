@@ -1,7 +1,6 @@
 module Questions
   class Create < BaseTransaction
     step :build_model
-    step :check_recaptcha
     step :validation
     step :persistence
 
@@ -9,14 +8,6 @@ module Questions
       question = Question.new(author: input[:current_user], **input[:params])
 
       Success(input.merge(question: question))
-    end
-
-    def check_recaptcha(input)
-      if input[:current_user].present? || RecaptchaCheck.not_bot?(input[:recaptcha_token], 'question')
-        Success(input)
-      else
-        Failure(input)
-      end
     end
 
     def validation(input)
