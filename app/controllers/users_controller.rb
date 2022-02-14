@@ -106,16 +106,18 @@ class UsersController < ApplicationController
     # Достаем вопросы пользователя с помощью метода questions, который мы
     # объявили в модели User (has_many :questions), у результата возврата этого
     # метода вызываем метод order, который отсортирует вопросы по дате.
-    @questions = @user.questions.order(created_at: :desc)
+    # includes здесь позволяет избежать вызов сортировки на nil? или избежать лишних запросов в БД?
+    @questions = @user.questions.includes(:author).order(created_at: :desc)
 
     # Для формы нового вопроса, которая есть у нас на странице пользователя,
     # создаем болванку вопроса, вызывая метод build у результата вызова метода
     # @user.questions.
     @new_question = @user.questions.build
 
+    # Для отображения количества отвеченных и неотвеченных вопросов.
     @questions_count = @questions.count
-    @answers_count = @questions.where.not(answer: nil).count
-    @unanswered_count = @questions_count - @answers_count
+    @unanswered_count = @questions.where(answer: nil).count
+    @answers_count = @questions_count - @unanswered_count
   end
 
   private
