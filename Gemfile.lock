@@ -211,7 +211,7 @@ DEPENDENCIES
   turbolinks (~> 5.2.0)
   web-console (>= 4.1.0)
   webpacker (~> 5.4.3)
-  where_exists (~> 2.0)
+  where_exists
 
 RUBY VERSION
    ruby 2.7.4p191
