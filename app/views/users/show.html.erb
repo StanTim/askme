@@ -49,6 +49,9 @@
         <%= f.text_area :text, class: 'form-textarea' %>
       </div>
 
+      <%# Хелпер капчи %>
+      <%= recaptcha_tags size: 'compact' unless current_user.present? %>
+
       <div class="form-action">
         <%= submit_tag 'Задать вопрос', class: 'button button-small button-dark' %>
       </div>
@@ -59,7 +62,7 @@
 <div class="column-3-4">
   <div class="user-questions buffer-both">
     <div class="questions-list">
-        <%= render @questions %>
+      <%= render @questions %>
     </div>
   </div>
 </div>
