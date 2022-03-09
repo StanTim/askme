@@ -209,7 +209,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
-  recaptcha (~> 3.3)
+  recaptcha
   sass-rails (>= 6)
   spring
   turbolinks (~> 5.2.0)

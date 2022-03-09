@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
         current_user: current_user,
         recaptcha_token: params[:recaptcha_token]
     ) do |m|
-      m.failure :check_recaptcha do |result|
+      m.failure :recaptcha_check do |result|
         redirect_to user_path(result[:question].user), notice: 'вы не прошли верификацию'
       end
 
