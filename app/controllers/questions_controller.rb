@@ -3,23 +3,14 @@ class QuestionsController < ApplicationController
   before_action :authorize_user, except: [:create]
 
   def create
-    Questions::Create.(
-      params: question_create_params,
-        current_user: current_user,
-        recaptcha_token: params[:recaptcha_token]
-    ) do |m|
-      m.failure :recaptcha_check do |result|
-        redirect_to user_path(result[:question].user), notice: 'вы не прошли верификацию'
-      end
+    @question = Question.new(question_create_params)
 
-      m.failure :validation do |result|
-        @question = result[:question]
-        render :edit
-      end
-
-      m.success do |result|
-        redirect_to user_path(result[:question].user), notice: 'вопрос задан'
-      end
+    # Проверяем капчу вместе с сохранением вопроса. Если в капче ошибка,
+    # она будет добавлена в массив @question.errors.
+    if check_captcha(@question) && @question.save
+      redirect_to user_path(@question.user), notice: 'Вопрос задан'
+    else
+      render :edit
     end
   end
 
@@ -44,6 +35,10 @@ class QuestionsController < ApplicationController
 
   def authorize_user
     reject_user unless @question.user == current_user
+  end
+
+  def check_captcha(model)
+    current_user.present? || verify_recaptcha(model: model)
   end
 
   def load_question
